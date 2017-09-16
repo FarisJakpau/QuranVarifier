@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">QuranVarifier</string>
-    <string name="facebook_app_id">441322662912790</string>
+    <string name="facebook_app_id">747379262126253</string>
+    <string name="fb_login_protocol_scheme">fb747379262126253</string>
+
 </resources>

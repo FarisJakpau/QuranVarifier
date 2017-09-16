@@ -12,7 +12,6 @@
         <ImageView
             android:layout_width="30dp"
             android:layout_height="30dp"
-            app:srcCompat="@drawable/com_facebook_button_icon_blue"
             android:paddingLeft="10dp"
             android:id="@+id/imageView2" />
 
