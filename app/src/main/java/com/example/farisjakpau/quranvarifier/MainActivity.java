@@ -1,6 +1,8 @@
 package com.example.farisjakpau.quranvarifier;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
@@ -10,6 +12,7 @@ import android.util.Base64;
 import android.util.Log;
 import android.widget.TextView;
 
+import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
@@ -26,8 +29,10 @@ public class MainActivity extends AppCompatActivity {
 
     LoginButton loginButton ;
     CallbackManager callbackManager;
-    TextView textView;
     Profile profile;
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
+    Connnection connnection;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +45,10 @@ public class MainActivity extends AppCompatActivity {
         keyHash();
         declaration();
 
+        loginButton.setReadPermissions("public_profile","email","user_posts");
+        sharedPreferences = this.getPreferences(Context.MODE_PRIVATE);
+        editor = sharedPreferences.edit();
+
 
         loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
@@ -47,6 +56,14 @@ public class MainActivity extends AppCompatActivity {
                 System.out.println("LOGIN SUCCESS");
                 System.out.println("PROFILE FB ID -->"+ profile.getName());
                 System.out.println("FACEBOOK ID -->"+ loginResult.getAccessToken().getUserId());
+
+                String token = loginResult.getAccessToken().toString();
+                String profileName = profile.getName();
+                connnection.setToken(token,getApplicationContext());
+                connnection.setUserName(profileName,getApplicationContext());
+                Intent intent = new Intent(getApplicationContext(), feedActivity.class);
+                startActivity(intent);
+
             }
 
             @Override
@@ -59,7 +76,6 @@ public class MainActivity extends AppCompatActivity {
                 System.out.println("LOGIN ERROR" + error);
             }
         });
-
 
     }
 
@@ -87,9 +103,10 @@ public class MainActivity extends AppCompatActivity {
 
     public void declaration(){
         loginButton = (LoginButton)findViewById(R.id.login_button);
-        loginButton.setReadPermissions("public_profile","email");
         callbackManager = CallbackManager.Factory.create();
-        textView = (TextView)findViewById(R.id.name);
         profile = Profile.getCurrentProfile();
+
+//        class declar
+        connnection = new Connnection();
     }
 }

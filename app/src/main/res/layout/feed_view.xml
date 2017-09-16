@@ -19,6 +19,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:paddingLeft="10dp"
+                android:id="@+id/date_feed"
                 android:text="Date"/>
     </LinearLayout>
 
@@ -31,14 +32,25 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingLeft="10dp"
+            android:paddingRight="10dp"
             android:paddingTop="10dp"
-            android:text="MEssage"/>
+            android:id="@+id/message_feed"
+            android:text="MEssage" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/image_feed"/>
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Description"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
             android:paddingTop="10dp"
-            android:paddingLeft="10dp"/>
+            android:text="Description"
+            android:id="@+id/description_feed"
+            android:textStyle="italic" />
     </LinearLayout>
 
 </LinearLayout>
